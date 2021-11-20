@@ -28,6 +28,7 @@ bladder.combined <- RunPCA(bladder.combined, npcs = 30, verbose = FALSE)
 bladder.combined <- RunUMAP(bladder.combined, dims = 1:30, reduction = 'pca')
 bladder.combined <- FindNeighbors(bladder.combined, reduction='pca', dims = 1:30)
 bladder.combined <- FindClusters(bladder.combined, resolution = 0.5) 
+DefaultAssay(bladder.combined) <- 'RNA'
 pdf(paste0(outdir,'umap_', sample, '.pdf'),width = 15)
 p1 <- DimPlot(bladder.combined, reduction = 'umap', group.by = 'orig.ident')
 p2 <- DimPlot(bladder.combined, reduction = 'umap', label = TRUE,
